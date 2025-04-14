@@ -41,8 +41,12 @@ input_data = np.array([[age, bmi, physhlth, menthlth, exerany2, smoke100, smokda
 
 # Predict
 if st.button("Check CVD Risk"):
+    input_data = np.array([[age, bmi, physhlth, menthlth, exerany2, smoke100, smokday2,
+                            alcday4, diabete4, cvdstrk3, hadmam, covidpos, covidsmp, covidprm]], dtype=np.float32)
+
     prediction = model.predict(input_data)
     prob = model.predict_proba(input_data)[0][1]
+
     if prediction[0] == 1:
         st.error(f"⚠️ High Risk of CVD (Confidence: {prob:.2f})")
     else:
